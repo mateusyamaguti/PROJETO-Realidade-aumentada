@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-frame</title>
+
+    <!-- Importação da biblioteca A-Frame -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.6.0/dist/aframe-physics-system.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Exemplo básico de objetos A-frame -->
+    <a-scene>
+        <a-camera position="0 1.6 0">
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        <!-- Objetos 3D -->
+        <!-- Tipo primitivo Box-->
+        <a-box class="interativo" id="box" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        
+        <!-- Tipo entidade componente Box-->
+        <a-entity 
+            geometry="primitive: box; width: 1" 
+            position="2 0.5 -3"
+            material="color: red">
+        </a-entity>
+
+        <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
+
+        <a-plane class="interativo" id="plane" position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-sky color="#ECECEC"></a-sky>
+
+    </a-scene>
+
+    <!-- Execução dos scripts JS -->
+    <script src="\assets\js\aframe-01.js"></script>
+
+</body>
+
+</html>

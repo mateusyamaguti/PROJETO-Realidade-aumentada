@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Entidade no A-Frame</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="/assets/js/aframe-02.js"></script>
+    
+  </head>
+  <body>
+    <a-scene>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+      <!-- Utilizando a entidade registrada como "custom-box" -->
+      <a-entity custom-box="color: red; metalness: 0" position="0 1 -3"></a-entity>
+
+      <!-- Outra entidade customizada com cor padrão -->
+      <a-entity custom-box position="2 1 -4"></a-entity>
+
+      <!-- Câmera para visualização -->
+      <a-entity camera position="0 1.6 0"></a-entity>
+    </a-scene>
+  </body>
+</html>

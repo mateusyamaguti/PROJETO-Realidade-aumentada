@@ -10,6 +10,8 @@ Criar pequenos projetos utilizando o Framework A-FRAME para se trabalhar realida
 ### Tecnologias
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![A-Frame]()
 
 
 ### Tópicos 
@@ -23,7 +25,14 @@ Insira os tópicos do README em links para facilitar a navegação do leitor
 ## Descrição do projeto 
 
 <p align="justify">
-  Descrição breve do projeto compondo um paragrafo ou dois. 
+  <b>a-frame-01:</b> Criação do modelo padrão de formas geométricas exemplificado pela documentação do A-Frame. A partir dele foi desenvolvido uma lógica em JS para quando o usuário passar o mouse sobre cada objeto, o id do objeto é escrito na tela. 
+</p>
+<p align="justify">
+  <b>a-frame-02:</b> Como registrar uma entidade (https://aframe.io/docs/1.6.0/guides/building-a-basic-scene.html) 
+</p>
+
+<p align="justify">
+  <b>a-frame-03:</b> Criar cena básica (https://aframe.io/docs/1.6.0/guides/building-a-basic-scene.html) 
 </p>
 
 ## Funcionalidades
@@ -57,12 +66,15 @@ Liste todas as dependencias e libs que o usuário deve ter instalado na máquina
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/React-Bootcamp-WoMarkersCode/certificate-generator
+git clone https://github.com/mateusyamaguti/PROJETO-Realidade-aumentada.git
 ```
 
-... 
+#### Use um servidor local
+Quando desenvolvemos projetos localmente, utilizamos um servidor local para que os arquivos sejam servidos adequadamente. As opções de servidores locais incluem: <br>
 
-Coloque um passo a passo para rodar a sua aplicação. **Dica: clone o próprio projeto e verfique se o passo a passo funciona**
+Executando `npm i -g five-server@latest && five-server --port=8000` em um terminal no mesmo diretório do seu arquivo HTML.<br>
+Executando `python -m SimpleHTTPServer` ou `python -m http.serverpara Python 3` em um terminal no mesmo diretório do seu arquivo HTML.<br>
+Assim que estivermos executando nosso servidor, podemos abrir nosso projeto no navegador usando a URL local e a porta em que o servidor está sendo executado (por exemplo, http://localhost:8000). Tente não abrir o projeto usando o file:// protocolo que não fornece um domínio; URLs absolutos e relativos podem não funcionar.
 
 ## Como rodar os testes
 
