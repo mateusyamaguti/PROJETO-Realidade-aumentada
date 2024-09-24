@@ -28,7 +28,7 @@ Insira os tópicos do README em links para facilitar a navegação do leitor
   <b>a-frame-01:</b> Criação do modelo padrão de formas geométricas exemplificado pela documentação do A-Frame. A partir dele foi desenvolvido uma lógica em JS para quando o usuário passar o mouse sobre cada objeto, o id do objeto é escrito na tela. 
 </p>
 <p align="justify">
-  <b>a-frame-02:</b> Como registrar uma entidade (https://aframe.io/docs/1.6.0/guides/building-a-basic-scene.html) 
+  <b>a-frame-02:</b> Como registrar uma entidade
 </p>
 
 <p align="justify">

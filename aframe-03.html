@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Scene</title>
+
+    <!-- Importação do A-FRAME -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- Importação de componente de ambiente -->
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="/assets/js/aframe-03.js"></script>
+
+
+</head>
+
+<body>
+    <a-scene>
+        <!-- Criação de assets para reutilização futura e gerenciamento de arquivos -->
+        <a-assets>
+             <img id="boxTexture" src="/assets/icons/mYmmbrp.jpeg"></img>
+             <img id="skyTexture" src="/assets/icons/sechelt.jpeg"></img>
+             <img id="groundTexture" src="/assets/icons/floor.jpg"></img>
+             <!-- Som ao iniciar a cena -->
+             <!-- <audio src="/assets/audio/backgroundnoise.wav" autoplay preload=""></audio> -->
+        </a-assets>
+
+        <!-- Componente texto -->
+        <a-entity
+        text="value: Aproxime-se; color: #BBB"
+        position="4 4 -5"
+        scale="6 6 6"></a-entity>
+
+        <!-- Podemos incluir animações por meio da propriedade animation -->
+        <a-box src="#boxTexture" 
+                position="2 2 -5" 
+                rotation="0 45 45" 
+                scale="2 2 2"
+                animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"
+                scale-on-mouseenter
+                animation__position="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"
+                animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"
+                animation__mouseleave="property: scale; to: 2 2 2; dur: 300; startEvents: mouseleave">
+        
+                <a-sound src="/assets/audio/videoplayback.m4a" autoplay="true"></a-sound>
+        </a-box>
+        <!-- Componente de ambiente pronto para uso -->
+        <!-- <a-entity environment="preset: forest; dressingAmount: 500"></a-entity> -->
+        <a-plane src="#groundTexture" rotation="-90 0 0" width="30" height="30" repeat="10 10"></a-plane>
+
+        <a-sky src="#skyTexture"></a-sky>
+        <a-light type="ambient" color="#445451"></a-light>
+        <a-light type="point" intensity="2" position="2 4 4"></a-light>
+
+        <!-- Adicionar câmera e curso -->
+        <a-camera>
+            <a-cursor color="#FAFAFA"></a-cursor>
+        </a-camera>
+    </a-scene>
+
+</body>
+</html>
