@@ -41,5 +41,14 @@ componentes/
 #### Usando o gerenciador de arquivos do sistema
 Ao invês de colocar uma imagem ou textura diramente em uma entidade ou tipo primitivo, o correto para melhor desempenho é criar uma tag asset e incluir nela a tag ima que após isso será chamada para inclusão na entidade. Exemplo:<br>
 ```
-
+<!-- Criação de assets para reutilização futura e gerenciamento de arquivos -->
+<a-assets>
+      <img id="boxTexture" src="/assets/icons/mYmmbrp.jpeg"></img>
+      <img id="skyTexture" src="/assets/icons/sechelt.jpeg"></img>
+      <img id="groundTexture" src="/assets/icons/floor.jpg"></img>
+      <!-- Som ao iniciar a cena -->
+      <!-- <audio src="/assets/audio/backgroundnoise.wav" autoplay preload=""></audio> -->
+</a-assets>
 ```
+
+### Getting Entities by Querying and Traversing

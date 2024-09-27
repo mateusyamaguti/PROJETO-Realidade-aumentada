@@ -10,17 +10,23 @@
     <!-- Importação de componente de ambiente -->
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     <script src="/assets/js/aframe-03.js"></script>
-
+    <!-- Importação de componente de animação rotacional -->
+    <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
 
 </head>
 
 <body>
     <a-scene>
+        <!-- This is a "mixin" we can apply to planets to make them rotate-->
+        <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
+
         <!-- Criação de assets para reutilização futura e gerenciamento de arquivos -->
         <a-assets>
              <img id="boxTexture" src="/assets/icons/mYmmbrp.jpeg"></img>
              <img id="skyTexture" src="/assets/icons/sechelt.jpeg"></img>
              <img id="groundTexture" src="/assets/icons/floor.jpg"></img>
+             <img id="sun-texture" src="https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2F1024px-Map_of_the_full_sun.jpg?1540859304920"
+                    crossorigin="anonymous">
              <!-- Som ao iniciar a cena -->
              <!-- <audio src="/assets/audio/backgroundnoise.wav" autoplay preload=""></audio> -->
         </a-assets>
@@ -33,6 +39,7 @@
 
         <!-- Podemos incluir animações por meio da propriedade animation -->
         <a-box src="#boxTexture" 
+                mixin="rotation"
                 position="2 2 -5" 
                 rotation="0 45 45" 
                 scale="2 2 2"
@@ -41,6 +48,7 @@
                 animation__position="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"
                 animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"
                 animation__mouseleave="property: scale; to: 2 2 2; dur: 300; startEvents: mouseleave">
+        </a-box>
         
                 <a-sound src="/assets/audio/videoplayback.m4a" autoplay="true"></a-sound>
         </a-box>
@@ -51,6 +59,12 @@
         <a-sky src="#skyTexture"></a-sky>
         <a-light type="ambient" color="#445451"></a-light>
         <a-light type="point" intensity="2" position="2 4 4"></a-light>
+
+         <!-- let's make the sun rotate and give off light!-->
+         <a-sphere id="sun" position="-2 2 -5" radius="2" src="#sun-texture" mixin="rotation" light="type: point"
+         material="shader: flat;"></a-sphere>
+
+        <a-sphere id="any" mixin="rotation" position="-5 2 -5" radius="1" src="#boxTexture"></a-sphere>
 
         <!-- Adicionar câmera e curso -->
         <a-camera>

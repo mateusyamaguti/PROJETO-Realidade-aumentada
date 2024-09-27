@@ -35,6 +35,9 @@ Insira os tópicos do README em links para facilitar a navegação do leitor
   <b>a-frame-03:</b> Criar cena básica (https://aframe.io/docs/1.6.0/guides/building-a-basic-scene.html) 
 </p>
 
+<p align="justify">
+  <b>a-frame-04:</b> Criar cena básica de animação (https://aframe.io/docs/1.6.0/guides/building-a-basic-scene.html) 
+</p>
 ## Funcionalidades
 
 :heavy_check_mark: Funcionalidade 1  
