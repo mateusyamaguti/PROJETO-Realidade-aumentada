@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets></a-assets>
+        <a-camera id="camera" position="0 0 0">
+            <a-cursor></a-cursor>
+        </a-camera>
+        <a-torus id="torus" 
+                rotation="0 0 0" 
+                position="0 0 -5" 
+                color="#43A367" 
+                arc="360" 
+                radius="2" 
+                radius-tubular="0.15">
+        </a-torus>
+        <a-plane controlePosCamera id="piso2" color="#0F0" position="8 -3 -8" rotation="-90 0 0" scale="3 3 3"></a-plane>
+        <a-plane controlePosCamera id="piso3" color="#00F" position="8 -3 8" rotation="-90 0 0" scale="3 3 3"></a-plane>
+    </a-scene>
+</body>
+<script>
+    // Inicializar variáveis para rotacionar elemento torus
+    let rx, ry, rz
+    rx=ry=rz=0
+    let rot = rx+" "+ry+" "+rz
+    // Pegar elemento torus
+    const torus = document.getElementById("torus")
+
+    const intervalo = setInterval(()=>{
+        ry ++
+        if(ry > 360){
+            ry = 0
+        }
+        rot = rx+" "+ry+" "+rz
+        torus.setAttribute("rotation", rot)
+    },10)
+
+// Pegar elementos do HTML que iremos trabalhar piso e camera
+const camera = document.getElementById("camera")
+const piso1 = document.getElementById("piso1")
+const piso2 = document.getElementById("piso2")
+
+// Registrar componente para disparo de evento
+AFRAME.registerComponent('controleposcamera', {
+  init: function () {
+    this.el.addEventListener("mouseenter",(evt) =>{
+        // Buscar elemento da posição dos pisos e atribuir a posição da câmera
+            const position = evt.target.getAttribute("position")
+            camera.setAttribute("position", position)
+            const positionNew = evt.target.getAttribute("position")
+            positionNew.y = 1.6
+            camera.setAttribute("position", position)
+            })
+        }
+    });
+
+</script>
+</html>
