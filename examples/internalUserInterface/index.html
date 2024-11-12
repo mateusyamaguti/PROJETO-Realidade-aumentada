@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal User Interface</title>
+    <!-- Importação da módulo A-frame  -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+    <!-- Importar interações em JS -->
+     <script src="assets/js/button.js"></script>
+
+
+</head>
+<body>
+    <!-- Componentes da cena -->
+    <a-scene>
+        <a-entity id="camera" camera look-controls wasd-controls></a-entity>
+        <a-box follow-camera clickable id="movingCube" 
+            position="0 1.6 -3" 
+            color="blue" 
+            depth="0.25" 
+            height="0.25" 
+            width="0.25">
+        </a-box>
+        <a-box id="controlCube" position="0 1.6 -3" color="red"></a-box>
+    </a-scene>
+    
+
+    <script>
+        // Definir um componente personalizado para captura de clique
+        AFRAME.registerComponent('clickable', {
+          init: function () {
+            const camera = document.querySelector("#camera");
+
+            // Adicionar evento de clique
+            this.el.addEventListener("click", () => {
+              camera.setAttribute('position', '0 1.6 0')
+              const cameraPosition = camera.object3D.position;
+              alert(
+                `Posição da câmera:\nX: ${cameraPosition.x.toFixed(2)}, Y: ${cameraPosition.y.toFixed(2)}, Z: ${cameraPosition.z.toFixed(2)}`
+              );
+            });
+          },
+        });
+      </script>
+
+
+</body>
+</html>
