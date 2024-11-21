@@ -1,21 +1,98 @@
-AFRAME.registerComponent('follow-camera', {
-  tick: function () {
-    const camera = document.querySelector('#camera');
-    const cube = this.el;
+/* global AFRAME */
+AFRAME.registerComponent('button', {
+  schema: {
+    label: {default: 'label'},
+    width: {default: 0.11},
+    toggable: {default: false}
+  },
+  init: function () {
+    var el = this.el;
+    var labelEl = this.labelEl = document.createElement('a-entity');
+    
+// Buscar câmera
+   const camera = document.querySelector("#camera"); 
+    const controlCube = document.querySelector("#controlCube")
+// Fim da busca por câmera
 
-    // Obter a posição da câmera
-    const cameraPosition = camera.object3D.position.clone();
-    const cameraDirection = new THREE.Vector3();
-    camera.object3D.getWorldDirection(cameraDirection);
+    this.color = '#3a50c5';
+    el.setAttribute('geometry', {
+      primitive: 'box',
+      width: this.data.width,
+      height: 0.05,
+      depth: 0.04
+    });
 
-    // Calcular uma posição à direita da câmera
-    const offsetRight = new THREE.Vector3().crossVectors(cameraDirection, camera.object3D.up).normalize();
-    offsetRight.multiplyScalar(-1.5); // Ajuste o valor () para o quanto deseja mover o cubo para a direita
+    el.setAttribute('material', {color: this.color});
+    el.setAttribute('pressable', '');
 
-    // Aplicar o deslocamento à direita e para trás
-    cameraPosition.add(cameraDirection.multiplyScalar(-1.5)).add(offsetRight); // Ajuste a distância com ()
+    labelEl.setAttribute('position', '0 0 0.02');
+    labelEl.setAttribute('text', {
+      value: this.data.label,
+      color: 'white',
+      align: 'center'
+    });
 
-    // Definir a posição do cubo
-    cube.object3D.position.copy(cameraPosition);
+    labelEl.setAttribute('scale', '0.75 0.75 0.75');
+    this.el.appendChild(labelEl);
+
+    this.bindMethods();
+    this.el.addEventListener('stateadded', this.stateChanged);
+    this.el.addEventListener('stateremoved', this.stateChanged);
+    this.el.addEventListener('pressedstarted', this.onPressedStarted);
+    this.el.addEventListener('pressedended', this.onPressedEnded);
+  },
+
+  bindMethods: function () {
+    this.stateChanged = this.stateChanged.bind(this);
+    this.onPressedStarted = this.onPressedStarted.bind(this);
+    this.onPressedEnded = this.onPressedEnded.bind(this);
+  },
+
+  update: function (oldData) {
+    if (oldData.label !== this.data.label) {
+      this.labelEl.setAttribute('text', 'value', this.data.label);
+    }
+  },
+
+  stateChanged: function () {
+    var color = this.el.is('pressed') ? 'green' : this.color;
+    this.el.setAttribute('material', {color: color});
+    controlCube.setAttribute("color", "blue")
+  },
+
+  onPressedStarted: function () {
+    var el = this.el;
+    el.setAttribute('material', {color: 'green'});
+    el.emit('click');
+
+    if (this.data.togabble) {
+      if (el.is('pressed')) {
+        el.removeState('pressed');
+      } else {
+        el.addState('pressed');
+      }
+    }
+  },
+
+  onPressedEnded: function () {
+    if (this.el.is('pressed')) { return; }
+    this.el.setAttribute('material', {color: this.color});
   }
 });
+
+
+// Function button reset external
+function refreshAndClearCache() {
+  // Adiciona um parâmetro único à URL para forçar a atualização sem cache
+  location.reload(true);
+}
+
+      // Componente personalizado para atualizar e limpar cache
+      AFRAME.registerComponent('refresh-on-click', {
+        init: function () {
+          this.el.addEventListener('click', () => {
+            // Atualiza a página e limpa o cache
+            location.reload(true);
+          });
+        }
+      });
